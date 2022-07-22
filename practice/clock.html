@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+      h3 {
+        font-size: 66px;
+        color: rgb(218, 218, 59);
+      }
+      .main {
+        width: 100vw;
+        height: 100vh;
+        background-position: center;
+        background-repeat: no-repeat;
+        background-color: rgba(9, 10, 72, 0.766);
+        background-blend-mode: overlay;
+        background-size: cover;
+        background-image: url(https://images.pexels.com/photos/1178684/pexels-photo-1178684.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1);
+        display: flex;
+        justify-content: center;
+        flex-direction: column;
+        align-items: center;
+        gap: 40px;
+      }
+      .main p {
+        font-size: 32px;
+        color: rgba(213, 219, 209, 0.947);
+      }
+      .div1,.div2{
+        display: flex;
+        gap: 20px;
+      }
+      h1{
+        color: rgb(255, 127, 155);
+      }
+      p,h3{
+        letter-spacing: 2px;
+      }
+      h3{
+        padding-bottom: 40px;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="main">
+      <h3>Indian Standard Time zone (IST)</h3>
+      <div class="div1">
+        <h1>DATE : </h1>
+        <p id="clock"></p>
+      </div> 
+      <div class="div2">
+        <h1>TIME : </h1>
+        <p id="date"></p>
+      </div> 
+    </div>
+    <!-- <p id="date">Current Date is: </p> -->
+
+    <script>
+      var displayTime = () => {
+        var myTime = new Date();
+        var newTime = myTime.toLocaleTimeString();
+        document.getElementById("date").innerHTML = newTime;
+      };
+      var displayDate = () => {
+        var myDate = new Date();
+        var newDate = myDate.toDateString();
+        document.getElementById("clock").innerHTML = newDate;
+      };
+      setInterval(displayTime);
+      setInterval(displayDate);
+    </script>
+  </body>
+</html>

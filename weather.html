@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>weather</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css">
+    <style>
+        *{
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        .main{
+            width: 100vw;
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        .weather-box{
+            width: 40vw;
+            height: 80vh;
+            background-color: rgba(208, 247, 247, 0.792);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: space-between;
+        }
+        #weatherlogo{
+            font-size: 100px;
+            color: rgba(253, 230, 27, 0.936);
+        }
+        .city{
+            display: flex;
+            /* justify-content: center; */
+            gap:10px;
+            align-items: center;
+            flex-direction: column;
+            letter-spacing: 2px;
+        }
+        .citydata{
+            display: flex;
+            gap: 40px;
+            align-items: center;
+        }
+        #street{
+            font-size: 40px;
+
+        }
+    </style>
+</head>
+<body>
+    <div class="main">
+        <div class="weather-box">
+            <i class="fa-solid fa-sun" id="weatherlogo"></i>
+            <div class="city">
+                <div class="citydata">
+                    <i class="fa-solid fa-street-view" id="street"></i>
+                <h1>Surat, Gujarat, IN</h1>
+                </div>
+                <div class="min-max">
+                    <p>min = 30.34 | max = 34.45 </p>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

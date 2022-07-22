@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <h1>Registration Form</h1>
+    <button id="btn1">Click Me</button>
+    <button id="btn2">Login</button>
+
+    <span id="val"></span>
+    <h1 id="time"></h1>
+
+    <script>
+      document.getElementById("btn1").style.backgroundColor = "green";
+      document.getElementById("btn2").style.backgroundColor = "blue";
+      // document.getElementById("val").innerHTML="Hello Kaushal";
+      // document.getElementById("val").innerText="Kaushal";
+
+      var display = () => {
+        document.getElementsByTagName("h1")[0].style.backgroundColor = "red";
+        document.getElementById("val").innerHTML = "Hello Kaushal";
+    };
+    setTimeout(display, 5000);
+    
+    var displayTime = () => {
+        
+        document.getElementById("time").innerHTML= new Date();
+      }
+      setInterval(displayTime,1000);
+    </script>
+  </body>
+</html>
