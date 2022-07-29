@@ -4,9 +4,9 @@ const Customer = require("../model/Registermodel");
 const bcrypt = require("bcryptjs");
 const auth = require("../middleware/auth")
 
-route.get("/LoginAdmin",(req,resp)=> {
-  resp.render("adminpage");
-})
+// route.get("/LoginAdmin",(req,resp)=> {
+//   resp.render("adminpage");
+// })
 
 route.get("/", async(req, res) => {
   try {

@@ -21,32 +21,33 @@ route.get("/category",(req,resp) => {
 route.get("/product",(req,resp) => {
   resp.render("product")
 })
+
 route.get("/addCategory",(req,resp)=> {
-  resp.render("addcategory")
+  resp.render("product")
 })
 
-route.post("/loginadmin",async (req,resp)=> {
+route.post("/adminlogin",async (req,resp)=> {
     try {
         const userName = req.body.username;
         const pass = req.body.password;
         console.log(userName+" "+pass);
         const adminData = await Admin.findOne({ Username: userName });
-        const token = await adminData.generateAuthToken();
-        console.log(studentData.Password);
-        resp.cookie("jwt",token,{
-          expires : new Date(Date.now() + 1000000),
-          httpOnly : true
-        })
-        const isMatch = await bcrypt.compare(pass, adminData.Password);
-        console.log(isMatch);
-        if (isMatch) {
-          resp.redirect("admin");
-        } else {
-          resp.render("adminlogin", { err: "Invalid Username or Password" });
-        }
+        // const token = await adminData.generateAuthToken();
+        // console.log(studentData.Password);
+        // resp.cookie("jwt",token,{
+        //   expires : new Date(Date.now() + 1000000),
+        //   httpOnly : true
+        // })
+        // const isMatch = await bcrypt.compare(pass, adminData.Password);
+        // console.log(isMatch);
+        // if (isMatch) {
+        //   resp.redirect("admin");
+        // } else {
+        //   resp.render("adminlogin", { err: "Invalid Username or Password" });
+        // }
         console.log(adminData);
         if(adminData.password === pass){
-          resp.render("adminlogin")
+          resp.render("adminpage")
         }else {
             resp.render("adminlogin", { err: "Invalid Username or Password" });
         }
