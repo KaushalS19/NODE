@@ -14,22 +14,22 @@ const AdminSchema = new mongoose.Schema({
   ],
 });
 
-// AdminSchema.methods.generateAuthToken = async function () {
-//     try {
-//       const token = jwt.sign({ _id: this._id }, "kaushaliskindperson");
-//       this.Tokens = this.Tokens.concat({ token: token });
-//       await this.save();
-//       return token;
-//     } catch (error) {
-//       console.log(error);
-//     }
-//   };
+AdminSchema.methods.generateAuthToken = async function () {
+    try {
+      const token = jwt.sign({ _id: this._id }, "kaushaliskindperson");
+      this.Tokens = this.Tokens.concat({ token: token });
+      await this.save();
+      return token;
+    } catch (error) {
+      console.log(error);
+    }
+  };
   
-//   AdminSchema.pre("save", async function (next) {
-//     if (this.isModified("Password")) {
-//       this.Password = await bcrypt.hash(this.Password, 10);
-//       next();
-//     }
-//   });
+  AdminSchema.pre("save", async function (next) {
+    if (this.isModified("password")) {
+      this.password = await bcrypt.hash(this.password, 10);
+      next();
+    }
+  });
 
 module.exports = mongoose.model("Admin", AdminSchema);

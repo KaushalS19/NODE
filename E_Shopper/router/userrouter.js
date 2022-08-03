@@ -77,7 +77,7 @@ route.post("/addCustomer",async (req,res)=> {
     try {
       const customer = new Customer(req.body);
 
-      // const token = await customer.generateToken();
+      const token = await customer.generateToken();
       // console.log(token);
       const result = await customer.save();
       console.log(result);

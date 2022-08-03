@@ -2,7 +2,7 @@ const express = require("express");
 const route = express.Router();
 const Admin = require("../model/Adminmodel")
 const bcrypt = require("bcryptjs");
-const auth = require("../middleware/auth")
+const adminAuth = require("../middleware/auth")
 
 
 route.get("/admin",(req,resp)=>{
@@ -15,14 +15,14 @@ route.get("/profile",(req,resp)=> {
 route.get("/adminpage",(req,resp)=> {
   resp.render("adminpage")
 })
-route.get("/category",(req,resp) => {
+route.get("/category",adminAuth,(req,resp) => {
   resp.render("category")
 })
-route.get("/product",(req,resp) => {
+route.get("/product",adminAuth,(req,resp) => {
   resp.render("product")
 })
 
-route.get("/addCategory",(req,resp)=> {
+route.get("/addCategory",adminAuth,(req,resp)=> {
   resp.render("product")
 })
 
@@ -32,19 +32,20 @@ route.post("/adminlogin",async (req,resp)=> {
         const pass = req.body.password;
         console.log(userName+" "+pass);
         const adminData = await Admin.findOne({ Username: userName });
-        // const token = await adminData.generateAuthToken();
-        // console.log(studentData.Password);
+        const token = await adminData.generateAuthToken();
+        console.log(adminData.password);
         // resp.cookie("jwt",token,{
         //   expires : new Date(Date.now() + 1000000),
         //   httpOnly : true
         // })
-        // const isMatch = await bcrypt.compare(pass, adminData.Password);
-        // console.log(isMatch);
-        // if (isMatch) {
-        //   resp.redirect("admin");
-        // } else {
-        //   resp.render("adminlogin", { err: "Invalid Username or Password" });
-        // }
+        const isMatch = await bcrypt.compare(pass, adminData.password);
+        console.log(isMatch);
+        // const isMatch = pass === adminData.password
+        if (isMatch) {
+          resp.redirect("admin");
+        } else {
+          resp.render("adminlogin", { err: "Invalid Username or Password" });
+        }
         console.log(adminData);
         if(adminData.password === pass){
           resp.render("adminpage")
@@ -56,7 +57,7 @@ route.post("/adminlogin",async (req,resp)=> {
       }
 });
 
-route.get("/logout",auth,async(req,resp)=> {
+route.get("/logout",adminAuth,async(req,resp)=> {
     try {
       data.Admin.Tokens = req.admin.Tokens.filter((element) => {
         return element.token!=req.token;
