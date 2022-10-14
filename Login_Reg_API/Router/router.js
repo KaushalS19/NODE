@@ -2,8 +2,9 @@ const express = require("express");
 const Route = express.Router();
 const User = require("../model/usermodel");
 const bcrypt = require("bcryptjs");
+const auth = require("../middleware/auth");
 
-Route.post("/userRegistration", async (req, resp) => {
+Route.post("/user", async (req, resp) => {
   try {
     const user = new User(req.body);
 
@@ -14,7 +15,7 @@ Route.post("/userRegistration", async (req, resp) => {
   }
 });
 
-Route.post("/userLogin", async (req, resp) => {
+Route.post("/user", async (req, resp) => {
   try {
     const Email = req.body.email;
     const Pass = req.body.password;
@@ -31,5 +32,7 @@ Route.post("/userLogin", async (req, resp) => {
     resp.send("Something went Wrong..!!");
   }
 });
+
+
 
 module.exports = Route;
